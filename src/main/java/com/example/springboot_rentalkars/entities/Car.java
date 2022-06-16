@@ -1,6 +1,7 @@
 package com.example.springboot_rentalkars.entities;
 
 import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -38,15 +39,18 @@ public class Car implements Serializable {
     private String numPlate;
 
 
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(name = "reg_date")
     private LocalDate regDate;
 
-   /* @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Rent> reservation;*/
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private Set<Reservation> reservation;
+
 
     public Car(){}
+
 
     public Car(String manufacturer, String model, String type, String numPlate, LocalDate regDate) {
         this.manufacturer = manufacturer;

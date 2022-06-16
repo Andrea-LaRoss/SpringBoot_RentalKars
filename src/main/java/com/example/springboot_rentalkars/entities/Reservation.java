@@ -1,6 +1,9 @@
 package com.example.springboot_rentalkars.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -16,12 +19,16 @@ public class Reservation {
     @Column(name = "id")
     private long id;
 
-/*    @ManyToOne
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;*/
+    @JsonBackReference
+    private User user;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     @JoinColumn(name = "car_id", referencedColumnName = "id")
+    @JsonBackReference
     private Car car;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
