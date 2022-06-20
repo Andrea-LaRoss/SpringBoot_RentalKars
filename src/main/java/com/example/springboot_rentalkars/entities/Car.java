@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name="car")
+@Table(name = "car")
 @Data
 public class Car implements Serializable {
 
