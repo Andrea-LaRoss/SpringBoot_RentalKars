@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -20,16 +21,21 @@ public class CarServiceImpl implements CarService{
     @Autowired
     private CarRepository carRepository;
 
-    @Override
-    public Iterable<Car> selAll() { return carRepository.findAll(); }
 
     @Override
-    public List<Car> searchCarByBrand(String brand) {
-        return carRepository.searchCarByBrand(brand);
+    public Iterable<Car> selAll() {
+       return carRepository.findAll();
     }
 
     @Override
-    public List<Car> searchCarByModel(String model) { return null; }
+    public List<Car> searchCarByBrand(String brand) {
+        return null;
+    }
+
+    @Override
+    public List<Car> searchCarByModel(String model) {
+        return null;
+    }
 
     @Override
     public Car checkPlate(String numPlate) {

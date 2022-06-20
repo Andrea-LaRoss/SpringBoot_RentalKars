@@ -44,7 +44,7 @@ public class User implements Serializable {
     private boolean admin;
 
 
-    /*@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Reservation> reservations;*/
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Reservation> reservations;
 
 }
