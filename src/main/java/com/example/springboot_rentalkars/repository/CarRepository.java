@@ -13,5 +13,12 @@ public interface CarRepository extends JpaRepository<Car, Long>{
 
     List<Car> searchCarByModel(String model);
 
+    List<Car> searchCarByType(String type);
+
+    List<Car> searchCarByNumPlate(String numPlate);
+
+    List<Car> searchCarByRegDate(String regDate);
+
     Car checkPlate(String numPlate);
+
 }

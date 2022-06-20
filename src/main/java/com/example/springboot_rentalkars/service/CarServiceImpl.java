@@ -23,32 +23,31 @@ public class CarServiceImpl implements CarService{
 
 
     @Override
-    public Iterable<Car> selAll() {
-       return carRepository.findAll();
-    }
+    public Iterable<Car> selAll() { return carRepository.findAll(); }
+
 
     @Override
-    public List<Car> searchCarByBrand(String brand) {
-        return null;
-    }
+    public List<Car> searchCarByBrand(String brand) { return carRepository.searchCarByBrand(brand); }
 
     @Override
-    public List<Car> searchCarByModel(String model) {
-        return null;
-    }
+    public List<Car> searchCarByModel(String model) { return carRepository.searchCarByModel(model); }
 
     @Override
-    public Car checkPlate(String numPlate) {
-        return null;
-    }
+    public List<Car> searchCarByType(String type) { return carRepository.searchCarByType(type); }
 
     @Override
-    public void delCar(Car car) {
-
-    }
+    public List<Car> searchCarByNumPlate(String numPlate) { return carRepository.searchCarByNumPlate(numPlate); }
 
     @Override
-    public void insCar(Car car) {
+    public List<Car> searchCarByRegDate(String regDate) { return carRepository.searchCarByRegDate(regDate); }
 
-    }
+    @Override
+    public Car checkPlate(String numPlate) { return carRepository.checkPlate(numPlate); }
+
+    @Override
+    public void delCar(Car car) { carRepository.delete(car); }
+
+    @Override
+    public void insCar(Car car) { carRepository.save(car); }
+
 }
