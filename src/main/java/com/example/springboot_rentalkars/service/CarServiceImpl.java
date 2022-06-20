@@ -1,11 +1,16 @@
 package com.example.springboot_rentalkars.service;
 
+import com.example.springboot_rentalkars.config.HibernateConfig;
 import com.example.springboot_rentalkars.entities.Car;
 import com.example.springboot_rentalkars.repository.CarRepository;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
@@ -13,22 +18,18 @@ import java.util.List;
 public class CarServiceImpl implements CarService{
 
     @Autowired
-    CarRepository carRepository;
+    private CarRepository carRepository;
 
     @Override
-    public Iterable<Car> selAll() {
-        return null;
-    }
+    public Iterable<Car> selAll() { return carRepository.findAll(); }
 
     @Override
     public List<Car> searchCarByBrand(String brand) {
-        return null;
+        return carRepository.searchCarByBrand(brand);
     }
 
     @Override
-    public List<Car> searchCarByModel(String model) {
-        return null;
-    }
+    public List<Car> searchCarByModel(String model) { return null; }
 
     @Override
     public Car checkPlate(String numPlate) {

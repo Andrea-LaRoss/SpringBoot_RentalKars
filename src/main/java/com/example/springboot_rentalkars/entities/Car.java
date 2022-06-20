@@ -13,7 +13,6 @@ import java.util.Set;
 @Data
 public class Car implements Serializable {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -21,7 +20,7 @@ public class Car implements Serializable {
 
 
     @Column(name = "manufacturer", nullable = false)
-    private String manufacturer;
+    private String brand;
 
 
     @Column(name = "model", nullable = false)
@@ -43,13 +42,4 @@ public class Car implements Serializable {
     /*@OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Rent> reservation;*/
 
-    public Car() {}
-
-    public Car(String manufacturer, String model, String type, String numPlate, LocalDate regDate) {
-        this.manufacturer = manufacturer;
-        this.model = model;
-        this.type = type;
-        this.numPlate = numPlate;
-        this.regDate = regDate;
-    }
 }
