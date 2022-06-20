@@ -3,7 +3,6 @@ package com.example.springboot_rentalkars.service;
 import com.example.springboot_rentalkars.entities.Car;
 import com.example.springboot_rentalkars.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,43 +16,32 @@ public class CarServiceImpl implements CarService{
     CarRepository carRepository;
 
     @Override
-    public Iterable<Car> selAll() { return carRepository.findAll(); }
+    public Iterable<Car> selAll() {
+        return null;
+    }
 
     @Override
-    @Transactional
-    public void insCar(Car car) { carRepository.save(car); }
+    public List<Car> searchCarByBrand(String brand) {
+        return null;
+    }
 
     @Override
-    @Transactional
-    public void delCar(Car car) { carRepository.delete(car); }
+    public List<Car> searchCarByModel(String model) {
+        return null;
+    }
 
     @Override
-    public List<Car> selByBrand(String brand) { return carRepository.selByBrand(brand); }
+    public Car checkPlate(String numPlate) {
+        return null;
+    }
 
     @Override
-    public List<Car> selByBrand(String brand, Pageable pageable) { return carRepository.selByBrand(brand, pageable); }
+    public void delCar(Car car) {
+
+    }
 
     @Override
-    public List<Car> selByModel(String model) { return carRepository.selByModel(model); }
+    public void insCar(Car car) {
 
-    @Override
-    public List<Car> selByModel(String model, Pageable pageable) { return carRepository.selByModel(model, pageable); }
-
-    @Override
-    public List<Car> selByType(String type) { return carRepository.selByType(type); }
-
-    @Override
-    public List<Car> selByType(String type, Pageable pageable) { return carRepository.selByType(type, pageable); }
-
-    @Override
-    public List<Car> selByNumPLate(String numPlate) { return selByNumPLate(numPlate); }
-
-    @Override
-    public List<Car> selByNumPLate(String numPlate, Pageable pageable) { return carRepository.selByNumPLate(numPlate, pageable); }
-
-    @Override
-    public Car selById(Long id) { return carRepository.selById(id); }
-
-    @Override
-    public Car checkNumPlate(String numPlate) { return carRepository.checkNumPlate(numPlate); }
+    }
 }

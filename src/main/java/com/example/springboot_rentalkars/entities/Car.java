@@ -1,21 +1,18 @@
 package com.example.springboot_rentalkars.entities;
 
 import lombok.Data;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "car")
+@Table(name="car")
 @Data
 public class Car implements Serializable {
 
-    private static final long serialVersionUID = -7825466441164705603L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,14 +40,10 @@ public class Car implements Serializable {
     @Column(name = "reg_date")
     private LocalDate regDate;
 
+    /*@OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Rent> reservation;*/
 
-    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private Set<Reservation> reservation;
-
-
-    public Car(){}
-
+    public Car() {}
 
     public Car(String manufacturer, String model, String type, String numPlate, LocalDate regDate) {
         this.manufacturer = manufacturer;
@@ -59,6 +52,4 @@ public class Car implements Serializable {
         this.numPlate = numPlate;
         this.regDate = regDate;
     }
-
 }
-
