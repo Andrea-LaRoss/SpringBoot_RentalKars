@@ -1,6 +1,7 @@
 server:
   port: 8050
 
+
   sql:
     init:
       mode: always
