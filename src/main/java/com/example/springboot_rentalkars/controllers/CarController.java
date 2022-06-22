@@ -29,9 +29,7 @@ public class CarController {
 
 
     @GetMapping("/remove")
-    public void deleteCar(Car car) {
-        carService.delCar(car);
-    }
+    public void deleteCar(Car car) { carService.delCar(car); }
 
 
     @GetMapping("/form/{id}")
