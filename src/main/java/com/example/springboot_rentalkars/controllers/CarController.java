@@ -52,6 +52,7 @@ public class CarController {
 
         if(car == null) {
             String error = String.format("La targa inserita non esiste");
+            logger.warn(error);
             return new ResponseEntity<CarDto>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<CarDto>(car, HttpStatus.OK);
@@ -69,6 +70,7 @@ public class CarController {
 
         if(carsList == null) {
             String error = String.format("La targa inserita non esiste");
+            logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<CarDto>>(carsList, HttpStatus.OK);
@@ -86,6 +88,7 @@ public class CarController {
 
         if(carsList == null) {
             String error = String.format("La targa inserita non esiste");
+            logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<CarDto>>(carsList, HttpStatus.OK);
@@ -103,6 +106,7 @@ public class CarController {
 
         if(carsList == null) {
             String error = String.format("La targa inserita non esiste");
+            logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<CarDto>>(carsList, HttpStatus.OK);
@@ -120,6 +124,7 @@ public class CarController {
 
         if(carsList == null) {
             String error = String.format("La targa inserita non esiste");
+            logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<CarDto>>(carsList, HttpStatus.OK);
@@ -137,6 +142,7 @@ public class CarController {
 
         if(carsList == null) {
             String error = String.format("La targa inserita non esiste");
+            logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
             return new ResponseEntity<List<CarDto>>(carsList, HttpStatus.OK);
