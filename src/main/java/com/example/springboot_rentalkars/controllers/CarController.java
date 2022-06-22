@@ -8,10 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,9 +34,20 @@ public class CarController {
     }
 
 
-    @GetMapping("/submitform")
-    public void saveCar(Car car) {
-        carService.insCar(car);
+    @GetMapping("/form/{id}")
+    public ResponseEntity<CarDto> carForm(@PathVariable("id") Long id) {
+
+        CarDto car = null;
+        if(id != null) {
+            car = carService.getCarById(id);
+        }
+
+        if(car == null) {
+            return new ResponseEntity<CarDto>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<CarDto>(car, HttpStatus.OK);
+        }
+
     }
 
 
@@ -51,7 +59,7 @@ public class CarController {
         CarDto car = carService.checkPlate(numPlate);
 
         if(car == null) {
-            String error = String.format("La targa inserita non esiste");
+            String error ="La targa inserita non esiste";
             logger.warn(error);
             return new ResponseEntity<CarDto>(HttpStatus.NOT_FOUND);
         } else {
@@ -64,12 +72,11 @@ public class CarController {
     @GetMapping(value = "/search/brand/{value}", produces = "application/json")
     public ResponseEntity<List<CarDto>> searchBrand(@PathVariable("value") String value) {
 
-        logger.info("--- Controlliamo la targa ---");
-
+        logger.info("--- Cerchiamo la Marca ---");
         List<CarDto> carsList = carService.searchCarByBrand(value);
 
         if(carsList == null) {
-            String error = String.format("La targa inserita non esiste");
+            String error = "La marca inserita non esiste";
             logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
@@ -82,12 +89,12 @@ public class CarController {
     @GetMapping(value = "/search/model/{value}", produces = "application/json")
     public ResponseEntity<List<CarDto>> searchModel(@PathVariable("value") String value) {
 
-        logger.info("--- Controlliamo la targa ---");
+        logger.info("--- Controlliamo il modello ---");
 
         List<CarDto> carsList = carService.searchCarByModel(value);
 
         if(carsList == null) {
-            String error = String.format("La targa inserita non esiste");
+            String error = "Il modello inserito non esiste";
             logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
@@ -100,12 +107,12 @@ public class CarController {
     @GetMapping(value = "/search/type/{value}", produces = "application/json")
     public ResponseEntity<List<CarDto>> searchType(@PathVariable("value") String value) {
 
-        logger.info("--- Controlliamo la targa ---");
+        logger.info("--- Controlliamo il tipo ---");
 
         List<CarDto> carsList = carService.searchCarByType(value);
 
         if(carsList == null) {
-            String error = String.format("La targa inserita non esiste");
+            String error = "Il tipo inserito non esiste";
             logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
@@ -123,7 +130,7 @@ public class CarController {
         List<CarDto> carsList = carService.searchCarByNumPlate(value);
 
         if(carsList == null) {
-            String error = String.format("La targa inserita non esiste");
+            String error = "La targa inserita non esiste";
             logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {
@@ -141,7 +148,7 @@ public class CarController {
         List<CarDto> carsList = carService.searchCarByRegDate(value);
 
         if(carsList == null) {
-            String error = String.format("La targa inserita non esiste");
+            String error = "La targa inserita non esiste";
             logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {

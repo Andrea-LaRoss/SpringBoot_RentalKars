@@ -22,7 +22,11 @@ public interface CarService {
 
     public CarDto checkPlate(String numPlate);
 
+    public CarDto getCarById(Long id);
+
     public void delCar(Car car);
 
     public void insCar(Car car);
+
+
 }
