@@ -2,11 +2,12 @@ package com.example.springboot_rentalkars.controllers;
 
 
 import com.example.springboot_rentalkars.dto.UserDto;
-import com.example.springboot_rentalkars.dto.UserDto;
 import com.example.springboot_rentalkars.entities.User;
 import com.example.springboot_rentalkars.service.UserService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

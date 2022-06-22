@@ -1,8 +1,7 @@
 package com.example.springboot_rentalkars.service;
 
-import com.example.springboot_rentalkars.dto.CarDto;
+
 import com.example.springboot_rentalkars.dto.UserDto;
-import com.example.springboot_rentalkars.entities.Car;
 import com.example.springboot_rentalkars.entities.User;
 import com.example.springboot_rentalkars.repository.UserRepository;
 
