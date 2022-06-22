@@ -1,6 +1,7 @@
 package com.example.springboot_rentalkars.service;
 
 import com.example.springboot_rentalkars.dto.CarDto;
+import com.example.springboot_rentalkars.dto.ReservationDto;
 import com.example.springboot_rentalkars.entities.Reservation;
 
 import java.time.LocalDate;
@@ -10,9 +11,11 @@ public interface ReservationService {
 
     public List<Reservation> selAll();
 
-    List<CarDto> availableCars(LocalDate startDate, LocalDate endDate);
+    public ReservationDto getReservationById (Long id);
 
-    public void delReservation(Reservation reservation);
+    public List<CarDto> availableCars (LocalDate startDate, LocalDate endDate);
 
-    public void insReservation(Reservation reservation);
+    public void delReservation (Reservation reservation);
+
+    public void insReservation (Reservation reservation);
 }

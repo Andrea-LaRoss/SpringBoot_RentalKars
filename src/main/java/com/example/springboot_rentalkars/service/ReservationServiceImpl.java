@@ -1,8 +1,11 @@
 package com.example.springboot_rentalkars.service;
 
 import com.example.springboot_rentalkars.dto.CarDto;
+import com.example.springboot_rentalkars.dto.ReservationDto;
+import com.example.springboot_rentalkars.dto.UserDto;
 import com.example.springboot_rentalkars.entities.Car;
 import com.example.springboot_rentalkars.entities.Reservation;
+import com.example.springboot_rentalkars.entities.User;
 import com.example.springboot_rentalkars.repository.ReservationRepository;
 
 import org.modelmapper.ModelMapper;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,7 +38,16 @@ public class ReservationServiceImpl implements ReservationService{
 
 
     @Override
+    public ReservationDto getReservationById(Long id) {
+        Optional<Reservation> user = reservationRepository.findById(id);
+        ReservationDto reservationDto = modelMapper.map(user, ReservationDto.class);
+        return reservationDto;
+    }
+
+
+    @Override
     public void delReservation(Reservation reservation) { reservationRepository.delete(reservation); }
+
 
     @Override
     public void insReservation(Reservation reservation) { reservationRepository.save(reservation); }
