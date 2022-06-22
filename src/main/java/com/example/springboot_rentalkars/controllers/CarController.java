@@ -23,7 +23,7 @@ public class CarController {
 
 
     @GetMapping()
-    public Iterable<Car> getAllCars() {
+    public List<Car> getAllCars() {
         return carService.selAll();
     }
 
@@ -141,12 +141,12 @@ public class CarController {
     @GetMapping(value = "/search/regdate/{value}", produces = "application/json")
     public ResponseEntity<List<CarDto>> searchRegDate(@PathVariable("value") String value) {
 
-        logger.info("--- Controlliamo la targa ---");
+        logger.info("--- Controlliamo la data di registrazione ---");
 
         List<CarDto> carsList = carService.searchCarByRegDate(value);
 
         if(carsList == null) {
-            String error = "La targa inserita non esiste";
+            String error = "La data di registrazione inserita non esiste";
             logger.warn(error);
             return new ResponseEntity<List<CarDto>>(HttpStatus.NOT_FOUND);
         } else {

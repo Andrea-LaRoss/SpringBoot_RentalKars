@@ -1,11 +1,19 @@
 package com.example.springboot_rentalkars.service;
 
+import com.example.springboot_rentalkars.dto.CarDto;
+import com.example.springboot_rentalkars.dto.UserDto;
+import com.example.springboot_rentalkars.entities.Car;
 import com.example.springboot_rentalkars.entities.User;
 import com.example.springboot_rentalkars.repository.UserRepository;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -13,28 +21,89 @@ public class UserServiceImpl implements UserService{
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+
     @Override
     public List<User> selAll() { return userRepository.findAll(); }
 
-    @Override
-    public List<User> searchByEmail(String email) { return userRepository.searchByEmail(email); }
 
     @Override
-    public List<User> searchByFirstName(String firstName) { return userRepository.searchByFirstName(firstName); }
+    public UserDto getUserById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        return userDto;
+    }
+
 
     @Override
-    public List<User> searchByLastName(String lastName) { return userRepository.searchByLastName(lastName); }
+    public List<UserDto> searchByEmail(String email) {
+        List<User> usersList = userRepository.searchByEmail(email);
+        return this.convertToDtoList(usersList);
+    }
+
 
     @Override
-    public List<User> searchByBirthday(String birthday) { return userRepository.searchByBirthday(birthday); }
+    public List<UserDto> searchByFirstName(String firstName) {
+        List<User> usersList = userRepository.searchByFirstName(firstName);
+        return this.convertToDtoList(usersList);
+    }
+
 
     @Override
-    public User checkEmail(String email) { return userRepository.checkEmail(email); }
+    public List<UserDto> searchByLastName(String lastName) {
+        List<User> usersList = userRepository.searchByLastName(lastName);
+        return this.convertToDtoList(usersList);
+    }
+
+
+    @Override
+    public List<UserDto> searchByBirthday(String birthday) {
+        List<User> usersList = userRepository.searchByBirthday(birthday);
+        return this.convertToDtoList(usersList);
+    }
+
+
+    @Override
+    public UserDto checkEmail(String email) {
+        User user = userRepository.checkEmail(email);
+        return this.convertToDto(user);
+    }
+
 
     @Override
     public void delUser(User user) { userRepository.delete(user); }
 
+
     @Override
     public void insUser(User user) { userRepository.save(user); }
+
+
+    private UserDto convertToDto(User user) {
+
+        UserDto userDto = null;
+        if (user != null) {
+            userDto =  modelMapper.map(user, UserDto.class);
+        }
+        return userDto;
+
+    }
+
+
+    private List<UserDto> convertToDtoList(List<User> usersList) {
+
+        List<UserDto> usersDto = new ArrayList<>();
+
+        if (usersList != null) {
+            usersDto = usersList
+                    .stream()
+                    .map(source -> modelMapper.map(source, UserDto.class))
+                    .collect(Collectors.toList());
+        }
+
+        return usersDto;
+
+    }
 
 }

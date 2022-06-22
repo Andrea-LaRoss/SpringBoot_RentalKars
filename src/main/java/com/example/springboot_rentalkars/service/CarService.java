@@ -2,13 +2,12 @@ package com.example.springboot_rentalkars.service;
 
 import com.example.springboot_rentalkars.dto.CarDto;
 import com.example.springboot_rentalkars.entities.Car;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface CarService {
 
-    public Iterable<Car>selAll();
+    public List<Car> selAll();
 
     public List<CarDto> searchCarByBrand(String brand);
 

@@ -1,5 +1,7 @@
 package com.example.springboot_rentalkars.service;
 
+import com.example.springboot_rentalkars.dto.CarDto;
+import com.example.springboot_rentalkars.dto.UserDto;
 import com.example.springboot_rentalkars.entities.User;
 
 import java.util.List;
@@ -8,15 +10,17 @@ public interface UserService {
 
     public List<User> selAll();
 
-    public List<User> searchByEmail(String email);
+    public UserDto getUserById(Long id);
 
-    public List<User> searchByFirstName(String firstName);
+    public List<UserDto> searchByEmail(String email);
 
-    public List<User> searchByLastName(String lastName);
+    public List<UserDto> searchByFirstName(String firstName);
 
-    public List<User> searchByBirthday(String birthday);
+    public List<UserDto> searchByLastName(String lastName);
 
-    public User checkEmail(String email);
+    public List<UserDto> searchByBirthday(String birthday);
+
+    public UserDto checkEmail(String email);
 
     public void delUser(User user);
 

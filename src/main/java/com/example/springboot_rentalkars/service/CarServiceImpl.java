@@ -4,7 +4,6 @@ import com.example.springboot_rentalkars.dto.CarDto;
 import com.example.springboot_rentalkars.entities.Car;
 import com.example.springboot_rentalkars.repository.CarRepository;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,70 +26,56 @@ public class CarServiceImpl implements CarService{
 
 
     @Override
-    public Iterable<Car> selAll() { return carRepository.findAll(); }
+    public List<Car> selAll() { return carRepository.findAll(); }
 
 
     @Override
     public List<CarDto> searchCarByBrand(String brand) {
-
         List<Car> carsList = carRepository.searchCarByBrand(brand);
         return this.convertToDtoList(carsList);
-
     }
 
 
     @Override
     public List<CarDto> searchCarByModel(String model) {
-
         List<Car> carsList = carRepository.searchCarByModel(model);
         return this.convertToDtoList(carsList);
-
     }
 
 
     @Override
     public List<CarDto> searchCarByType(String type) {
-
         List<Car> carsList = carRepository.searchCarByType(type);
         return this.convertToDtoList(carsList);
-
     }
 
 
     @Override
     public List<CarDto> searchCarByNumPlate(String numPlate) {
-
         List<Car> carsList = carRepository.searchCarByNumPlate(numPlate);
         return this.convertToDtoList(carsList);
-
     }
 
 
     @Override
     public List<CarDto> searchCarByRegDate(String regDate) {
-
         List<Car> carsList = carRepository.searchCarByRegDate(regDate);
         return this.convertToDtoList(carsList);
-
     }
 
 
     @Override
     public CarDto checkPlate(String numPlate) {
-
         Car car = carRepository.checkPlate(numPlate);
         return this.convertToDto(car);
-
     }
 
 
     @Override
     public CarDto getCarById(Long id) {
-
         Optional<Car> car = carRepository.findById(id);
         CarDto carDto = modelMapper.map(car, CarDto.class);
         return carDto;
-
     }
 
 
@@ -116,7 +101,6 @@ public class CarServiceImpl implements CarService{
     private List<CarDto> convertToDtoList(List<Car> carsList) {
 
         List<CarDto> carsDto = new ArrayList<>();
-
         if (carsList != null) {
             carsDto = carsList
                     .stream()
